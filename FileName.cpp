@@ -3,6 +3,8 @@
 
 int main()
 {
+    setlocale(LC_ALL, "RU");
+    std::cout << fmod(100, 13)<<std::endl;
     RenderWindow window(sf::VideoMode(800, 800), "SFML works!", Style::Fullscreen);//запуск окна
     //RenderWindow window(sf::VideoMode(800, 800), "SFML works!");//запуск окна
     //CircleShape shape(100.f);//создание круга
@@ -16,28 +18,18 @@ int main()
     //Sprite Hero_sprite;
 
     
-    Image Hero_image;
 
 
-    Texture Hero_texture;
-
-
-    Sprite Hero_sprite;
-
-    Hero_image.loadFromFile("F:/Игорь/C++/07.06.24/sprites/stay_face.png");
-    Hero_image.createMaskFromColor(Color::White);//убирает белый (задний фон)
-    Hero_texture.loadFromImage(Hero_image);
-  
-    Hero_sprite.setTexture(Hero_texture);
-    Hero_sprite.setPosition(0,1000);
+   
 
     Pole DestroyStone, IndestructibleStone, BG, Wall;
     IndestructibleStone.DrawIndestructibleStone();//вся отрисовка неломающегося камня
     DestroyStone.DrawDestroyStone();//вся отрисовка ломающегося камня
-    DestroyStone.Genetrate();
     BG.Background();
 
-
+    Hero Stay_face;
+    //Stay_left.Left_Hero_stay();
+    Stay_face.Face_Hero_stay();
 
     while (window.isOpen())
     {
@@ -49,12 +41,35 @@ int main()
         }
 
         window.clear();//повтор
+
+
+
         BG.DrawBackground(window);
         IndestructibleStone.DrawPole(window);
         DestroyStone.WindowDrawDestroy(window);
-
-        window.draw(Hero_sprite);//отрисовка
-
+        Stay_face.Draw_Hero_Stay(window);
+        if (Keyboard::isKeyPressed(Keyboard::A))
+        {
+            
+            Stay_face.Draw_Left_Hero_Stay(window);
+        }
+        if (Keyboard::isKeyPressed(Keyboard::D))
+        {
+            Stay_face.Draw_Right_Hero_Stay(window);
+        }
+        if (Keyboard::isKeyPressed(Keyboard::W))
+        {
+            Stay_face.Draw_Up_Hero_Stay(window);
+        }
+        if (Keyboard::isKeyPressed(Keyboard::S))
+        {
+            Stay_face.Draw_Down_Hero_Stay(window);
+        }
+        if (Keyboard::isKeyPressed(Keyboard::C))
+        {
+            system("cls");
+        }
+        
         window.display();//повтор
     }
 

@@ -1,4 +1,5 @@
 #include "Pole.hpp"
+#include "Hero_sprite.hpp"
 
 void Pole::DrawIndestructibleStone()
 {
@@ -64,13 +65,7 @@ void Pole::WindowDrawDestroy(RenderWindow& window)
 
 }
 
-void Pole::WindowDrawIndestructible(RenderWindow &window)
-{
 
-    window.draw(Indestructible_stone_sprite);
-    
-
-}
 
 void Pole::DrawPole(RenderWindow& window)
 {
@@ -107,16 +102,9 @@ void Pole::DrawPole(RenderWindow& window)
 
 }
 
-void Pole::Genetrate()
-{
-
-    
 
 
 
-
-
-}
 
 
 
