@@ -3,8 +3,10 @@
 
 int main()
 {
+    float a = 100;
+    float b = 13;
     setlocale(LC_ALL, "RU");
-    std::cout << fmod(100, 13)<<std::endl;
+    std::cout << std::fmod(a, b)<<std::endl;
     RenderWindow window(sf::VideoMode(800, 800), "SFML works!", Style::Fullscreen);//запуск окна
     //RenderWindow window(sf::VideoMode(800, 800), "SFML works!");//запуск окна
     //CircleShape shape(100.f);//создание круга
@@ -33,7 +35,7 @@ int main()
 
     while (window.isOpen())
     {
-        sf::Event event;
+        Event event;
         while (window.pollEvent(event))
         {
             if (event.type == sf::Event::Closed)
@@ -48,22 +50,30 @@ int main()
         IndestructibleStone.DrawPole(window);
         DestroyStone.WindowDrawDestroy(window);
         Stay_face.Draw_Hero_Stay(window);
-        if (Keyboard::isKeyPressed(Keyboard::A))
+        if ((event.type == Event::KeyReleased) && (event.key.code == Keyboard::Left))
         {
-            
-            Stay_face.Draw_Left_Hero_Stay(window);
+
+
+
+                Stay_face.Draw_Left_Hero_Stay(window);
+                event.type = Event::KeyPressed;
         }
-        if (Keyboard::isKeyPressed(Keyboard::D))
+       
+        if ((event.type == Event::KeyReleased) && (event.key.code == Keyboard::Right))
         {
             Stay_face.Draw_Right_Hero_Stay(window);
+            event.type = Event::KeyPressed;
         }
-        if (Keyboard::isKeyPressed(Keyboard::W))
+        if ((event.type == Event::KeyReleased) && (event.key.code == Keyboard::Up))
         {
             Stay_face.Draw_Up_Hero_Stay(window);
+            event.type = Event::KeyPressed;
         }
-        if (Keyboard::isKeyPressed(Keyboard::S))
+        if ((event.type == Event::KeyReleased) && (event.key.code == Keyboard::Down))
         {
             Stay_face.Draw_Down_Hero_Stay(window);
+            event.type = Event::KeyPressed;
+
         }
         if (Keyboard::isKeyPressed(Keyboard::C))
         {

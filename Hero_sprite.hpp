@@ -21,13 +21,13 @@ public:
 	void Draw_Up_Hero_Stay(RenderWindow& window);
 	void Draw_Right_Hero_Stay(RenderWindow& window);
 	void Draw_Hero_Stay(RenderWindow &window);
-	void Collision(float x, float y);
+	void Collision();
 private:
 	Image Hero_image;
 	Texture Hero_texture;
 	Sprite Hero_sprite;
-	float coords_x = 0;
-	float coords_y = 0;//стартовые координаты
+	int coords_x = 0;
+	int coords_y = 50;//стартовые координаты
 
 
 };

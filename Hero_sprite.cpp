@@ -37,16 +37,18 @@ void Hero::Face_Hero_stay()//данные, стоит лицом
 
 }
 
-void Hero::Collision(float x, float y)
+void Hero::Collision()
 {
-
-
-
-            if (fmod(x,100)!=0 && fmod(y,100) != 0)
+           // std::cout << "x: " << coords_x%100 << std::endl << "y: " << coords_y%100 <<std::endl;
+            if (coords_x%100== 50 && coords_y % 100 ==50)
             {
                 std::cout << "СТОЛКНОВЕНИЕ";
             }
+            else {
 
+
+
+            }
 
 
 
@@ -97,17 +99,19 @@ void Hero::Up_Hero_stay()//данные, стоит спиной
 void Hero::Draw_Down_Hero_Stay(RenderWindow& window)//отрисовка, стоит лицом
 {
     Face_Hero_stay();
-    Collision(coords_x, coords_y);
-    Hero_sprite.setPosition(coords_x, coords_y+=0.5);
+
+    Hero_sprite.setPosition(coords_x, coords_y+=10);
+    Collision();
     window.draw(Hero_sprite);
 }
 
 void Hero::Draw_Left_Hero_Stay(RenderWindow& window)//отрисовка, стоит влево
 {
-    Left_Hero_stay();
-    Collision(coords_x, coords_y);
 
-    Hero_sprite.setPosition(coords_x-=0.5, coords_y);
+    Left_Hero_stay();
+
+    Hero_sprite.setPosition(coords_x-=10, coords_y);
+    Collision();
     window.draw(Hero_sprite);
 
 
@@ -117,20 +121,26 @@ void Hero::Draw_Left_Hero_Stay(RenderWindow& window)//отрисовка, стоит влево
 
 void Hero::Draw_Up_Hero_Stay(RenderWindow& window)//отрисовка, стоит спиной
 {
-    Up_Hero_stay();
-    Collision(coords_x, coords_y);
 
-    Hero_sprite.setPosition(coords_x, coords_y-=0.5);
-    window.draw(Hero_sprite);
+        Up_Hero_stay();
+        Hero_sprite.setPosition(coords_x, coords_y -= 10);
+        Collision();
+        window.draw(Hero_sprite);
+
+
 }
 
 void Hero::Draw_Right_Hero_Stay(RenderWindow& window)//отрисовка, стоит вправо
 {
-    Right_Hero_stay();
-    Collision(coords_x, coords_y);
 
-    Hero_sprite.setPosition(coords_x +=0.5, coords_y);
-    window.draw(Hero_sprite);
+
+        Right_Hero_stay();
+
+        Hero_sprite.setPosition(coords_x += 10, coords_y);
+        Collision();
+        window.draw(Hero_sprite);
+
+
 }
 
 
