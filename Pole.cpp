@@ -33,10 +33,14 @@ void Pole::WindowDrawDestroy(RenderWindow& window)
     if (!Recurs)
     {
 
-        for (int i = 0; i < SIZE; i++)
+        for (int i = 0; i < COL; i++)
         {
+            for (int j = 0; j < ROW; j++)
+            {
+
             True = rand() % 2;
-            Destroy_stone_coords[i] = True;
+            Destroy_stone_coords[i][j] = True;
+            }
 
         }
     }
@@ -49,11 +53,11 @@ void Pole::WindowDrawDestroy(RenderWindow& window)
 
 
 
-                if (Destroy_stone_coords[j*i] && j % 2 == 0) {
+                if (Destroy_stone_coords[i][j] && j % 2 == 0) {
                     Destroy_stone_sprite.setPosition(i * 50, j * 50);
                     window.draw(Destroy_stone_sprite);
                 }
-                else if (Destroy_stone_coords[j*i] && i % 2 == 0) {
+                else if (Destroy_stone_coords[i][j] && i % 2 == 0) {
                     Destroy_stone_sprite.setPosition(i * 50, j * 50);
                     window.draw(Destroy_stone_sprite);
                 }
@@ -100,6 +104,22 @@ void Pole::DrawPole(RenderWindow& window)
     Destroy_stone_sprite.setPosition(200, 200);
 
 
+}
+
+bool Pole::Collision(int x, int y, int move, Hero &hero)
+{
+    if (true)
+    {
+
+    }
+
+
+
+
+
+
+
+    return false;
 }
 
 

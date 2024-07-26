@@ -1,6 +1,8 @@
 #include "Hero_sprite.hpp"
 #include "Pole.hpp"
 
+
+
 int main()
 {
     float a = 100;
@@ -35,6 +37,7 @@ int main()
 
     while (window.isOpen())
     {
+        
         Event event;
         while (window.pollEvent(event))
         {
@@ -50,29 +53,32 @@ int main()
         IndestructibleStone.DrawPole(window);
         DestroyStone.WindowDrawDestroy(window);
         Stay_face.Draw_Hero_Stay(window);
-        if ((event.type == Event::KeyReleased) && (event.key.code == Keyboard::Left))
+        if ((event.type == Event::KeyPressed) && (event.key.code == Keyboard::Left))
         {
+            if (Stay_face.coords_x-Stay_face.move)
+            {
 
+            }
 
 
                 Stay_face.Draw_Left_Hero_Stay(window);
-                event.type = Event::KeyPressed;
+                event.type = Event::KeyReleased;
         }
        
-        if ((event.type == Event::KeyReleased) && (event.key.code == Keyboard::Right))
+        if ((event.type == Event::KeyPressed) && (event.key.code == Keyboard::Right))
         {
             Stay_face.Draw_Right_Hero_Stay(window);
-            event.type = Event::KeyPressed;
+            event.type = Event::KeyReleased;
         }
-        if ((event.type == Event::KeyReleased) && (event.key.code == Keyboard::Up))
+        if ((event.type == Event::KeyPressed) && (event.key.code == Keyboard::Up))
         {
             Stay_face.Draw_Up_Hero_Stay(window);
-            event.type = Event::KeyPressed;
+            event.type = Event::KeyReleased;
         }
-        if ((event.type == Event::KeyReleased) && (event.key.code == Keyboard::Down))
+        if ((event.type == Event::KeyPressed) && (event.key.code == Keyboard::Down))
         {
             Stay_face.Draw_Down_Hero_Stay(window);
-            event.type = Event::KeyPressed;
+            event.type = Event::KeyReleased;
 
         }
         if (Keyboard::isKeyPressed(Keyboard::C))
@@ -85,3 +91,4 @@ int main()
 
     return 0;
 }
+

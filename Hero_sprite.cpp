@@ -37,22 +37,6 @@ void Hero::Face_Hero_stay()//данные, стоит лицом
 
 }
 
-void Hero::Collision()
-{
-           // std::cout << "x: " << coords_x%100 << std::endl << "y: " << coords_y%100 <<std::endl;
-            if (coords_x%100== 50 && coords_y % 100 ==50)
-            {
-                std::cout << "СТОЛКНОВЕНИЕ";
-            }
-            else {
-
-
-
-            }
-
-
-
-}
 
 void Hero::Left_Hero_stay()//данные, стоит влево
 {
@@ -100,18 +84,31 @@ void Hero::Draw_Down_Hero_Stay(RenderWindow& window)//отрисовка, стоит лицом
 {
     Face_Hero_stay();
 
-    Hero_sprite.setPosition(coords_x, coords_y+=10);
-    Collision();
+
+        if ( coords_x % 100 == 0) {//чтоб не врезаться в стену
+            if (coords_y+move<=1000)//max-50(=)
+            {
+
+                Hero_sprite.setPosition(coords_x, coords_y += move);
+            }
+        }
+    
+
     window.draw(Hero_sprite);
 }
 
 void Hero::Draw_Left_Hero_Stay(RenderWindow& window)//отрисовка, стоит влево
 {
-
     Left_Hero_stay();
 
-    Hero_sprite.setPosition(coords_x-=10, coords_y);
-    Collision();
+        if ( coords_y % 100 == 0) {//чтоб не врезаться в стену
+            if (coords_x - move >= 0) {
+                Hero_sprite.setPosition(coords_x -= move, coords_y);
+            }
+
+        }
+
+
     window.draw(Hero_sprite);
 
 
@@ -123,8 +120,20 @@ void Hero::Draw_Up_Hero_Stay(RenderWindow& window)//отрисовка, стоит спиной
 {
 
         Up_Hero_stay();
-        Hero_sprite.setPosition(coords_x, coords_y -= 10);
-        Collision();
+
+            if ( coords_x % 100 == 0) {//чтоб не врезаться в стену
+            
+                if (coords_y-move>=50)
+                {
+
+                Hero_sprite.setPosition(coords_x, coords_y -= move);
+                }
+            
+            }
+
+
+
+
         window.draw(Hero_sprite);
 
 
@@ -136,8 +145,15 @@ void Hero::Draw_Right_Hero_Stay(RenderWindow& window)//отрисовка, стоит вправо
 
         Right_Hero_stay();
 
-        Hero_sprite.setPosition(coords_x += 10, coords_y);
-        Collision();
+
+            if (coords_y % 100 == 0) {//чтоб не врезаться в стену
+                
+                if (coords_x + move <= 1550) {
+                    Hero_sprite.setPosition(coords_x += move, coords_y);
+                }
+            }
+        
+
         window.draw(Hero_sprite);
 
 
