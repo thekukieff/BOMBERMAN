@@ -30,21 +30,27 @@ void Pole::WindowDrawDestroy(RenderWindow& window)
     int True;
     static int Recurs = 0;
     srand(time(NULL));
+
     if (!Recurs)
+
     {
 
-        for (int i = 0; i < COL; i++)
+        for (int i = 1; i < COL; i++)
         {
-            for (int j = 0; j < ROW; j++)
+            for (int j = 1; j < ROW; j++)
             {
 
             True = rand() % 2;
             Destroy_stone_coords[i][j] = True;
+            
             }
 
         }
+    for (int i = 0; i < ROW; i++)
+    {
+        Destroy_stone_coords[0][i] = 0;
+    }//не заполнем первый ряд
     }
-
 
         for (int i = 1; i < 32; i++)//len
         {
@@ -75,9 +81,9 @@ void Pole::DrawPole(RenderWindow& window)
 {
     
     
-    for  (int i = 1;  i < 32; i+=2)
+    for  (int i = 1;  i < COL; i+=2)
     {
-        for (int j = 1; j < 21; j+=2)
+        for (int j = 1; j < ROW; j+=2)
         {
 
             Indestructible_stone_sprite.setPosition(i*50, j*50);
@@ -106,21 +112,31 @@ void Pole::DrawPole(RenderWindow& window)
 
 }
 
-bool Pole::Collision(int x, int y, int move, Hero &hero)
+void Pole::DrawBomb()
 {
-    if (true)
-    {
 
-    }
+    Bomb_big_image.loadFromFile("F:/Игорь/C++/07.06.24/sprites/Bomb_big.png");
+    Bomb_big_image.createMaskFromColor(Color::White);//убирает белый (задний фон)
+    Bomb_big_texture.loadFromImage(Bomb_big_image);
 
-
-
-
+    Bomb_big_sprite.setTexture(Bomb_big_texture);
 
 
 
-    return false;
 }
+
+void Pole::DrawWindowBomb(RenderWindow& window, Hero& hero)
+{
+    int x = hero.coords_x;
+    int y = hero.coords_y;
+
+    DrawBomb();
+    Bomb_big_sprite.setPosition(x,y);
+
+    window.draw(Bomb_big_sprite);
+}
+
+
 
 
 

@@ -82,7 +82,7 @@ void Hero::Up_Hero_stay()//данные, стоит спиной
 
 void Hero::Draw_Down_Hero_Stay(RenderWindow& window)//отрисовка, стоит лицом
 {
-    Face_Hero_stay();
+
 
 
         if ( coords_x % 100 == 0) {//чтоб не врезаться в стену
@@ -99,7 +99,7 @@ void Hero::Draw_Down_Hero_Stay(RenderWindow& window)//отрисовка, стоит лицом
 
 void Hero::Draw_Left_Hero_Stay(RenderWindow& window)//отрисовка, стоит влево
 {
-    Left_Hero_stay();
+
 
         if ( coords_y % 100 == 0) {//чтоб не врезаться в стену
             if (coords_x - move >= 0) {
@@ -119,7 +119,6 @@ void Hero::Draw_Left_Hero_Stay(RenderWindow& window)//отрисовка, стоит влево
 void Hero::Draw_Up_Hero_Stay(RenderWindow& window)//отрисовка, стоит спиной
 {
 
-        Up_Hero_stay();
 
             if ( coords_x % 100 == 0) {//чтоб не врезаться в стену
             
@@ -143,7 +142,6 @@ void Hero::Draw_Right_Hero_Stay(RenderWindow& window)//отрисовка, стоит вправо
 {
 
 
-        Right_Hero_stay();
 
 
             if (coords_y % 100 == 0) {//чтоб не врезаться в стену

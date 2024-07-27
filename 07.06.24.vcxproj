@@ -133,13 +133,13 @@
   <ItemGroup>
     <ClCompile Include="FileName.cpp" />
     <ClCompile Include="Hero_sprite.cpp" />
-    <ClCompile Include="MyClass.cpp" />
     <ClCompile Include="Pole.cpp" />
+    <ClCompile Include="Start.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Hero_sprite.hpp" />
-    <ClInclude Include="MyClass.hpp" />
     <ClInclude Include="Pole.hpp" />
+    <ClInclude Include="Start.hpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
