@@ -1,5 +1,6 @@
 #include "Pole.hpp"
 #include "Hero_sprite.hpp"
+#include"Bomb.hpp"
 
 void Pole::DrawIndestructibleStone()
 {
@@ -15,42 +16,42 @@ void Pole::DrawIndestructibleStone()
 
 void Pole::DrawDestroyStone()
 {
+    int True;
     Destroy_stone_image.loadFromFile("F:/Игорь/C++/07.06.24/sprites/Destroy.png");
     Destroy_stone_texture.loadFromImage(Destroy_stone_image);
     Destroy_stone_sprite.setTexture(Destroy_stone_texture);
-
-
-
-
-}
-
-void Pole::WindowDrawDestroy(RenderWindow& window)
-{
-
-    int True;
-    static int Recurs = 0;
-    srand(time(NULL));
-
-    if (!Recurs)
-
+    for (int i = 1; i < COL; i++)
     {
-
-        for (int i = 1; i < COL; i++)
+        for (int j = 1; j < ROW; j++)
         {
-            for (int j = 1; j < ROW; j++)
-            {
 
             True = rand() % 2;
             Destroy_stone_coords[i][j] = True;
-            
-            }
 
         }
+
+    }
+    
     for (int i = 0; i < ROW; i++)
     {
         Destroy_stone_coords[0][i] = 0;
     }//не заполнем первый ряд
-    }
+}
+
+
+
+
+
+void Pole::WindowDrawDestroy(RenderWindow& window, Pole& door)
+{
+
+
+
+    srand(time(NULL));
+
+
+
+        
 
         for (int i = 1; i < 32; i++)//len
         {
@@ -70,7 +71,7 @@ void Pole::WindowDrawDestroy(RenderWindow& window)
             }
         }
 
-        Recurs = 1;
+
 
 
 }
@@ -112,29 +113,38 @@ void Pole::DrawPole(RenderWindow& window)
 
 }
 
-void Pole::DrawBomb()
+void Pole::Door(Pole stone)
 {
+   
+    srand(time(NULL));
+    int door_x, door_y;
+    Door_image.loadFromFile("F:/Игорь/C++/07.06.24/sprites/vorota.jpg");
+    Door_image.createMaskFromColor(Color::White);//убирает белый (задний фон)
+    Door_texture.loadFromImage(Door_image);
+    Door_sprite.setTexture(Door_texture);
 
-    Bomb_big_image.loadFromFile("F:/Игорь/C++/07.06.24/sprites/Bomb_big.png");
-    Bomb_big_image.createMaskFromColor(Color::White);//убирает белый (задний фон)
-    Bomb_big_texture.loadFromImage(Bomb_big_image);
-
-    Bomb_big_sprite.setTexture(Bomb_big_texture);
-
-
+    while (true)
+    {
+        door_x = rand() % 32+1;//+1 чтобы не было на первой вертикале
+        door_y = rand() % 21+1;
+        
+        if (stone.Destroy_stone_coords[door_x][door_y])
+        {
+            std::cout << stone.Destroy_stone_coords[door_x][door_y] << std::endl;
+            break;
+        }
+    }
+    Door_sprite.setPosition(door_x*50, door_y*50);
+    std::cout << door_x << " " << door_y<<std::endl;
 
 }
 
-void Pole::DrawWindowBomb(RenderWindow& window, Hero& hero)
+void Pole::DrawDoor(RenderWindow& window)
 {
-    int x = hero.coords_x;
-    int y = hero.coords_y;
-
-    DrawBomb();
-    Bomb_big_sprite.setPosition(x,y);
-
-    window.draw(Bomb_big_sprite);
+    window.draw(Door_sprite);
 }
+
+
 
 
 

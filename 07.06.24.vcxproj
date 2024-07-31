@@ -131,12 +131,14 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Bomb.cpp" />
     <ClCompile Include="FileName.cpp" />
     <ClCompile Include="Hero_sprite.cpp" />
     <ClCompile Include="Pole.cpp" />
     <ClCompile Include="Start.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Bomb.hpp" />
     <ClInclude Include="Hero_sprite.hpp" />
     <ClInclude Include="Pole.hpp" />
     <ClInclude Include="Start.hpp" />

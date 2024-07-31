@@ -1,6 +1,7 @@
 #include "Start.hpp"
 #include "Hero_sprite.hpp"
 #include "Pole.hpp"
+#include "Bomb.hpp"
 
 void Start()
 {
@@ -14,12 +15,15 @@ void Start()
 
 
 
-    Pole DestroyStone, IndestructibleStone, BG, Bomb;
+    Pole DestroyStone, IndestructibleStone, BG, Door;
+    Hero hero;
+    Bomb bomb;
+
+
     IndestructibleStone.DrawIndestructibleStone();//вся отрисовка неломающегося камня
     DestroyStone.DrawDestroyStone();//вся отрисовка ломающегося камня
     BG.Background();
-
-    Hero hero;
+    Door.Door(DestroyStone);
 
     hero.Face_Hero_stay();
 
@@ -29,7 +33,7 @@ void Start()
         Event event;
         while (window.pollEvent(event))
         {
-            if (event.type == sf::Event::Closed)
+            if (event.type == Event::Closed)
                 window.close();
         }
 
@@ -38,8 +42,9 @@ void Start()
 
 
         BG.DrawBackground(window);
+        Door.DrawDoor(window);
         IndestructibleStone.DrawPole(window);
-        DestroyStone.WindowDrawDestroy(window);
+        DestroyStone.WindowDrawDestroy(window, DestroyStone);
         hero.Draw_Hero_Stay(window);
         
         if ((event.type == Event::KeyPressed) && (event.key.code == Keyboard::Left))//нажатие клавиши 
@@ -93,15 +98,19 @@ void Start()
 
         }//временно
         
-        if (Keyboard::isKeyPressed(Keyboard::W))
+        if ((event.type == Event::KeyReleased) && (event.key.code == Keyboard::W))
         {
-            std::cout << "DRAW\n";
-            Bomb.DrawWindowBomb(window, hero);
 
+            bomb.DrawBomb(hero);
+            bomb.DestroyBomb(hero.coords_x, hero.coords_y, DestroyStone.Destroy_stone_coords);
+            event.type = Event::KeyPressed;
 
 
         }
+        bomb.DrawWindowBomb(window);
+        
         window.display();//повтор
     }
+
 
 }

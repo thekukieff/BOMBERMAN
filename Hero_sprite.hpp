@@ -9,6 +9,7 @@
 #include <cmath>
 using namespace sf;
 
+
 class Hero {
 
 public:
