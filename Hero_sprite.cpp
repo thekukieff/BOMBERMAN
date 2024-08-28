@@ -1,8 +1,8 @@
-#include "Hero_sprite.hpp"
+п»ї#include "Hero_sprite.hpp"
 
 
-//RenderWindow window(sf::VideoMode(800, 800), "SFML works!");//запуск окна
-//CircleShape shape(100.f);//создание круга
+//RenderWindow window(sf::VideoMode(800, 800), "SFML works!");//Г§Г ГЇГіГ±ГЄ Г®ГЄГ­Г 
+//CircleShape shape(100.f);//Г±Г®Г§Г¤Г Г­ГЁГҐ ГЄГ°ГіГЈГ 
 //
 //Image Hero_image;
 //
@@ -15,21 +15,21 @@
 
 
 //Hero_texture.loadFromImage(Hero_image);
-//Hero_image.loadFromFile("F:/Игорь/C++/07.06.24/sprites/norm_sprite.png");
-//shape.setFillColor(sf::Color::Green);//заполнить круг зеленым
+//Hero_image.loadFromFile("F:/Г€ГЈГ®Г°Гј/C++/07.06.24/sprites/norm_sprite.png");
+//shape.setFillColor(sf::Color::Green);//Г§Г ГЇГ®Г«Г­ГЁГІГј ГЄГ°ГіГЈ Г§ГҐГ«ГҐГ­Г»Г¬
 //Hero_sprite.setTexture(Hero_texture);
 //Hero_sprite.setPosition(25, 25);
 
-void Hero::Face_Hero_stay()//данные, стоит лицом
+void Hero::Face_Hero_stay()//Г¤Г Г­Г­Г»ГҐ, Г±ГІГ®ГЁГІ Г«ГЁГ¶Г®Г¬
 {
 
 
-    Hero_image.loadFromFile("F:/Игорь/C++/07.06.24/sprites/stay_face.png");
-    Hero_image.createMaskFromColor(Color::White);//убирает белый (задний фон)
+    Hero_image.loadFromFile("sprites/stay_face.png");
+    Hero_image.createMaskFromColor(Color::White);//ГіГЎГЁГ°Г ГҐГІ ГЎГҐГ«Г»Г© (Г§Г Г¤Г­ГЁГ© ГґГ®Г­)
     Hero_texture.loadFromImage(Hero_image);
 
     Hero_sprite.setTexture(Hero_texture);
-    Hero_sprite.setPosition(coords_x,coords_y);
+    Hero_sprite.setPosition(coords_x, coords_y);
 
 
 
@@ -38,27 +38,26 @@ void Hero::Face_Hero_stay()//данные, стоит лицом
 }
 
 
-void Hero::Left_Hero_stay()//данные, стоит влево
+void Hero::Left_Hero_stay()//Г¤Г Г­Г­Г»ГҐ, Г±ГІГ®ГЁГІ ГўГ«ГҐГўГ®
 {
 
 
-    Hero_image.loadFromFile("F:/Игорь/C++/07.06.24/sprites/stay_left.png");
-    Hero_image.createMaskFromColor(Color::White);//убирает белый (задний фон)
+    Hero_image.loadFromFile("sprites/stay_left.png");
+    Hero_image.createMaskFromColor(Color::White);//ГіГЎГЁГ°Г ГҐГІ ГЎГҐГ«Г»Г© (Г§Г Г¤Г­ГЁГ© ГґГ®Г­)
     Hero_texture.loadFromImage(Hero_image);
 
     Hero_sprite.setTexture(Hero_texture);
-    Hero_sprite.setPosition(coords_x,coords_y);
-    
+    Hero_sprite.setPosition(coords_x, coords_y);
 
 
 
 
 }
 
-void Hero::Right_Hero_stay()//данные, стоит вправо
+void Hero::Right_Hero_stay()//Г¤Г Г­Г­Г»ГҐ, Г±ГІГ®ГЁГІ ГўГЇГ°Г ГўГ®
 {
-    Hero_image.loadFromFile("F:/Игорь/C++/07.06.24/sprites/stay_right.png");
-    Hero_image.createMaskFromColor(Color::White);//убирает белый (задний фон)
+    Hero_image.loadFromFile("sprites/stay_right.png");
+    Hero_image.createMaskFromColor(Color::White);//ГіГЎГЁГ°Г ГҐГІ ГЎГҐГ«Г»Г© (Г§Г Г¤Г­ГЁГ© ГґГ®Г­)
     Hero_texture.loadFromImage(Hero_image);
 
     Hero_sprite.setTexture(Hero_texture);
@@ -68,10 +67,10 @@ void Hero::Right_Hero_stay()//данные, стоит вправо
 
 }
 
-void Hero::Up_Hero_stay()//данные, стоит спиной
+void Hero::Up_Hero_stay()//Г¤Г Г­Г­Г»ГҐ, Г±ГІГ®ГЁГІ Г±ГЇГЁГ­Г®Г©
 {
-    Hero_image.loadFromFile("F:/Игорь/C++/07.06.24/sprites/stay_up.png");
-    Hero_image.createMaskFromColor(Color::White);//убирает белый (задний фон)
+    Hero_image.loadFromFile("sprites/stay_up.png");
+    Hero_image.createMaskFromColor(Color::White);//ГіГЎГЁГ°Г ГҐГІ ГЎГҐГ«Г»Г© (Г§Г Г¤Г­ГЁГ© ГґГ®Г­)
     Hero_texture.loadFromImage(Hero_image);
 
     Hero_sprite.setTexture(Hero_texture);
@@ -80,34 +79,34 @@ void Hero::Up_Hero_stay()//данные, стоит спиной
 
 }
 
-void Hero::Draw_Down_Hero_Stay(RenderWindow& window)//отрисовка, стоит лицом
+void Hero::Draw_Down_Hero_Stay(RenderWindow& window)//Г®ГІГ°ГЁГ±Г®ГўГЄГ , Г±ГІГ®ГЁГІ Г«ГЁГ¶Г®Г¬
 {
 
 
 
-        if ( coords_x % 100 == 0) {//чтоб не врезаться в стену
-            if (coords_y+move<=1000)//max-50(=)
-            {
+    if (coords_x % 100 == 0) {//Г·ГІГ®ГЎ Г­ГҐ ГўГ°ГҐГ§Г ГІГјГ±Гї Гў Г±ГІГҐГ­Гі
+        if (coords_y + move <= 1000)//max-50(=)
+        {
 
-                Hero_sprite.setPosition(coords_x, coords_y += move);
-            }
+            Hero_sprite.setPosition(coords_x, coords_y += move);
         }
-    
+    }
+
 
     window.draw(Hero_sprite);
 }
 
-void Hero::Draw_Left_Hero_Stay(RenderWindow& window)//отрисовка, стоит влево
+void Hero::Draw_Left_Hero_Stay(RenderWindow& window)//Г®ГІГ°ГЁГ±Г®ГўГЄГ , Г±ГІГ®ГЁГІ ГўГ«ГҐГўГ®
 {
 
 
-        if ( coords_y % 100 == 0) {//чтоб не врезаться в стену
-            if (coords_x - move >= 0) {
-                Hero_sprite.setPosition(coords_x -= move, coords_y);
-            }
-
+    if (coords_y % 100 == 0) {//Г·ГІГ®ГЎ Г­ГҐ ГўГ°ГҐГ§Г ГІГјГ±Гї Гў Г±ГІГҐГ­Гі
+        if (coords_x - move >= 0) {
+            Hero_sprite.setPosition(coords_x -= move, coords_y);
         }
 
+    }
+
 
     window.draw(Hero_sprite);
 
@@ -116,51 +115,51 @@ void Hero::Draw_Left_Hero_Stay(RenderWindow& window)//отрисовка, стоит влево
 
 }
 
-void Hero::Draw_Up_Hero_Stay(RenderWindow& window)//отрисовка, стоит спиной
+void Hero::Draw_Up_Hero_Stay(RenderWindow& window)//Г®ГІГ°ГЁГ±Г®ГўГЄГ , Г±ГІГ®ГЁГІ Г±ГЇГЁГ­Г®Г©
 {
 
 
-            if ( coords_x % 100 == 0) {//чтоб не врезаться в стену
-            
-                if (coords_y-move>=50)
-                {
+    if (coords_x % 100 == 0) {//Г·ГІГ®ГЎ Г­ГҐ ГўГ°ГҐГ§Г ГІГјГ±Гї Гў Г±ГІГҐГ­Гі
 
-                Hero_sprite.setPosition(coords_x, coords_y -= move);
-                }
-            
-            }
+        if (coords_y - move >= 50)
+        {
 
+            Hero_sprite.setPosition(coords_x, coords_y -= move);
+        }
 
+    }
 
 
-        window.draw(Hero_sprite);
+
+
+    window.draw(Hero_sprite);
 
 
 }
 
-void Hero::Draw_Right_Hero_Stay(RenderWindow& window)//отрисовка, стоит вправо
+void Hero::Draw_Right_Hero_Stay(RenderWindow& window)//Г®ГІГ°ГЁГ±Г®ГўГЄГ , Г±ГІГ®ГЁГІ ГўГЇГ°Г ГўГ®
 {
 
 
 
 
-            if (coords_y % 100 == 0) {//чтоб не врезаться в стену
-                
-                if (coords_x + move <= 1550) {
-                    Hero_sprite.setPosition(coords_x += move, coords_y);
-                }
-            }
-        
+    if (coords_y % 100 == 0) {//Г·ГІГ®ГЎ Г­ГҐ ГўГ°ГҐГ§Г ГІГјГ±Гї Гў Г±ГІГҐГ­Гі
 
-        window.draw(Hero_sprite);
+        if (coords_x + move <= 1550) {
+            Hero_sprite.setPosition(coords_x += move, coords_y);
+        }
+    }
+
+
+    window.draw(Hero_sprite);
 
 
 }
 
 
-void Hero::Draw_Hero_Stay(RenderWindow& window)//отрисовка, старт
+void Hero::Draw_Hero_Stay(RenderWindow& window)//Г®ГІГ°ГЁГ±Г®ГўГЄГ , Г±ГІГ Г°ГІ
 {
+    Hero_sprite.setPosition(coords_x, coords_y);
     window.draw(Hero_sprite);
 }
-
 

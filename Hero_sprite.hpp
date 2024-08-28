@@ -1,4 +1,4 @@
-#ifndef HERO_SPRITE
+п»ї#ifndef HERO_SPRITE
 #define HERO_SPRITE
 #include <SFML/Audio.hpp>
 #include <SFML/Graphics.hpp>
@@ -7,6 +7,7 @@
 #include <SFML/Window/Keyboard.hpp>
 #include <iostream>
 #include <cmath>
+#include <ctime>
 using namespace sf;
 
 
@@ -18,13 +19,13 @@ public:
 	void Right_Hero_stay();
 	void Up_Hero_stay();
 	void Draw_Down_Hero_Stay(RenderWindow& window);
-	void Draw_Left_Hero_Stay(RenderWindow &window);
+	void Draw_Left_Hero_Stay(RenderWindow& window);
 	void Draw_Up_Hero_Stay(RenderWindow& window);
 	void Draw_Right_Hero_Stay(RenderWindow& window);
-	void Draw_Hero_Stay(RenderWindow &window);
+	void Draw_Hero_Stay(RenderWindow& window);
 
 	int coords_x = 0;
-	int coords_y = 50;//стартовые координаты
+	int coords_y = 50;//Г±ГІГ Г°ГІГ®ГўГ»ГҐ ГЄГ®Г®Г°Г¤ГЁГ­Г ГІГ»
 	int move = 5;
 
 private:

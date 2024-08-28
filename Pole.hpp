@@ -1,4 +1,4 @@
-#ifndef POLE_HPP
+п»ї#ifndef POLE_HPP
 #define POLE_HPP
 #include "Hero_sprite.hpp"
 class Pole
@@ -7,17 +7,17 @@ public:
 	void DrawIndestructibleStone();
 	void DrawDestroyStone();
 	void Background();
-	void DrawBackground(RenderWindow &window);
-	void WindowDrawDestroy(RenderWindow &window, Pole& door);
+	void DrawBackground(RenderWindow& window);
+	void WindowDrawDestroy(RenderWindow& window);
 	void DrawPole(RenderWindow& window);
-	
+
 	void Door(Pole stone);
 	void DrawDoor(RenderWindow& window);
 
-
+	int door_x, door_y;
 	static const int COL = 32;
 	static const int ROW = 21;
-	int Destroy_stone_coords[COL][ROW];//положение ломающегося камня
+	int Destroy_stone_coords[COL][ROW];//ГЇГ®Г«Г®Г¦ГҐГ­ГЁГҐ Г«Г®Г¬Г ГѕГ№ГҐГЈГ®Г±Гї ГЄГ Г¬Г­Гї
 private:
 	Texture Destroy_stone_texture, Indestructible_stone_texture, Bomb_big_texture, Door_texture;
 	Sprite Destroy_stone_sprite, Indestructible_stone_sprite, Bomb_big_sprite, Door_sprite;

@@ -1,5 +1,5 @@
 #include "Start.hpp"
 int main(){
-    Start();
+    Game game;
     return 0;
 }
