@@ -139,13 +139,6 @@ void Pole::DrawDoor(RenderWindow& window)
 
 
 
-
-
-
-
-
-
-
 void Pole::Background()
 {
 

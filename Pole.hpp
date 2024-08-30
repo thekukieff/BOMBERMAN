@@ -1,6 +1,7 @@
 ﻿#ifndef POLE_HPP
 #define POLE_HPP
 #include "Hero_sprite.hpp"
+
 class Pole
 {
 public:

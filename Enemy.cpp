@@ -1,5 +1,6 @@
 ﻿#include "Enemy.hpp"
 
+
 void Enemy::DrawEnemy()
 {
     static int j = 1;//ïåðåõîä âíèç
@@ -93,12 +94,20 @@ void Enemy::DrawWindowEnemy(RenderWindow& window, Pole& Stone, Hero& hero)
                 move = 1;
             }
         }
-
-        if ((x - 25 == hero.coords_x && y == hero.coords_y) || (x + 25 == hero.coords_x && y == hero.coords_y))//êîëëèçèÿ ñ èãðîêîì
+        for (int i = 0; i < 26; i++)
         {
+
+        if ((x - i == hero.coords_x && y == hero.coords_y) || (x + i == hero.coords_x && y == hero.coords_y)
+            ||(y-i==hero.coords_y&&x==hero.coords_x)||(y + i == hero.coords_y && x == hero.coords_x))//êîëëèçèÿ ñ èãðîêîì
+        {
+            x = -200;
+            y = -200;
+            Enemy_sprite.setPosition(x, y);
+            hero.Draw_Window_Death(window );
             //äîáàâèòü àíèìàöèþ
             //sleep(seconds(3));
             //window.close();
+        }
         }
 
         coords_x = 0;

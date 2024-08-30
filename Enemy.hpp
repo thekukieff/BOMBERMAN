@@ -2,9 +2,6 @@
 #define ENEMY_HPP
 #include "Hero_sprite.hpp"
 #include "Pole.hpp"
-
-
-
 class Enemy {
 public:
 	void DrawEnemy();
@@ -14,7 +11,7 @@ public:
 	void DrawEnemyDown();
 
 	void DrawWindowEnemy(RenderWindow& window, Pole& Stone, Hero& hero);
-
+	
 
 	int x;
 	int coords_x = 0;

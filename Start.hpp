@@ -1,9 +1,9 @@
 #ifndef START_HPP
 #define START_HPP
 #include "Hero_sprite.hpp"
+#include "Pole.hpp"
 #include "Bomb.hpp"
 #include "Enemy.hpp"
-#include "Pole.hpp"
 class Game{
 public:
 
@@ -15,7 +15,7 @@ public:
 private:
     bool boom = false;
     bool boom_true = false;
-
+    Font font;//רנטפע 
 
     Pole DestroyStone, IndestructibleStone, BG, Door;
     Hero hero;
@@ -24,7 +24,9 @@ private:
     Clock clock_bomb, clock_game, clock_boom;
     SoundBuffer error_bomb;
     Sound sound_error_bomb;
-    Music music;
+    Music music; 
+    
+
 
     const int MAX_TIME = 350;
     int timer_bomb = 0;

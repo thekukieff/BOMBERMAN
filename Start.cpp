@@ -4,16 +4,26 @@
 
 Game::Game()
 {
+
     srand(time(NULL));
     Load();
-    RenderWindow window(VideoMode(1680, 1050), "Bomberman!");//çàïóñê îêíà
-
+    RenderWindow window(VideoMode(1680, 1050), "Bomberman!", Style::Fullscreen);//çàïóñê îêíà
+        Text text("", font, 20);//создаем объект текст. закидываем в объект текст строку, шрифт, размер шрифта(в пикселях);//сам объект текст (не строка)
+        text.setStyle(Text::Bold);//жирный и подчеркнутый текст. по умолчанию он "худой":)) и не подчеркнутый
+        text.setFillColor(Color::Black);
 
     while (window.isOpen())//ãëàâíûé öèêë ïðîãðàììû
 
     {
-        music.play();
-        timer_game = clock_game.getElapsedTime().asSeconds();
+        //music.play();
+        timer_game = clock_game.getElapsedTime().asSeconds();   
+
+        std::ostringstream playerTime;
+        playerTime << timer_game;
+        text.setString("Time "+playerTime.str()+"\\350");
+        text.setPosition(0, 0);
+        //text.setPosition(text.getCenter().x - 165, view.getCenter().y - 200);
+
         //std::cout << timer_game << std::endl;
         //std::cout << timer_bomb<<std::endl;
         Event event;
@@ -24,6 +34,9 @@ Game::Game()
         }
 
         window.clear();//ïîâòîð
+        
+
+
         if (!boom_true)
         {
             clock_boom.restart();
@@ -43,6 +56,7 @@ Game::Game()
         IndestructibleStone.DrawPole(window);
         DestroyStone.WindowDrawDestroy(window);
         hero.Draw_Hero_Stay(window);
+        window.draw(text);
 
         if ((event.type == Event::KeyPressed) && (event.key.code == Keyboard::Left))//íàæàòèå êëàâèøè 
         {
@@ -102,8 +116,9 @@ Game::Game()
             }
         }
 
-        if (Keyboard::isKeyPressed(Keyboard::Escape) || timer_game == MAX_TIME)
+        if (Keyboard::isKeyPressed(Keyboard::Escape) || timer_game == MAX_TIME )
         {
+
             window.close();
         }
 
@@ -191,11 +206,11 @@ Game::Game()
 
             if (timer_bomb == 3)//òàéìåð áîìáû
             {
-                bomb.DestroyBomb(DestroyStone.Destroy_stone_coords, enemy1, hero);
-                bomb.DestroyBomb(DestroyStone.Destroy_stone_coords, enemy2, hero);
-                bomb.DestroyBomb(DestroyStone.Destroy_stone_coords, enemy3, hero);
-                bomb.DestroyBomb(DestroyStone.Destroy_stone_coords, enemy4, hero);
-                bomb.DestroyBomb(DestroyStone.Destroy_stone_coords, enemy5, hero);
+                bomb.DestroyBomb(DestroyStone.Destroy_stone_coords, enemy1, hero, window);
+                bomb.DestroyBomb(DestroyStone.Destroy_stone_coords, enemy2, hero, window);
+                bomb.DestroyBomb(DestroyStone.Destroy_stone_coords, enemy3, hero, window);
+                bomb.DestroyBomb(DestroyStone.Destroy_stone_coords, enemy4, hero, window);
+                bomb.DestroyBomb(DestroyStone.Destroy_stone_coords, enemy5, hero, window);
 
                 Boom.BOOM(hero, bomb);//взрыв
                 bomb.BombDelete();
@@ -219,10 +234,10 @@ Game::Game()
 
 void Game::Load()
 {
-
     error_bomb.loadFromFile("music/error.mp3");
     music.openFromFile("music/music.mp3");
-
+    font.loadFromFile("shrift/volda.otf");
+    
     
 
 
@@ -235,6 +250,7 @@ void Game::Load()
     enemy3.DrawEnemy();
     enemy4.DrawEnemy();
     enemy5.DrawEnemy();
+    hero.Draw_Hero_Death();
     //âûíåñòè â îòäåëüíóþ ôóíêöèþ
     //ðàçîáðàòüñÿ ñ ðàíäîìîì
 

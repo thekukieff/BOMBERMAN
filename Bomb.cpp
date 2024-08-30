@@ -1,5 +1,6 @@
 ﻿#include "Bomb.hpp"
 
+
 void Bomb::DrawBomb(Hero& hero)
 {
     x = hero.coords_x;
@@ -33,7 +34,7 @@ void Bomb::DrawWindowBomb(RenderWindow& window)
 
 }
 
-void Bomb::DestroyBomb(int Destroy_stone_coords[32][21], Enemy& enemy, Hero& hero)
+void Bomb::DestroyBomb(int Destroy_stone_coords[32][21], Enemy& enemy, Hero& hero, RenderWindow &window)
 
 {
 
@@ -108,6 +109,64 @@ void Bomb::DestroyBomb(int Destroy_stone_coords[32][21], Enemy& enemy, Hero& her
 
             }
 
+        if (x + i == hero.coords_x)//collision for X
+        {
+            //std::cout << "FOR X\n";
+
+            for (int xx = 0; xx < 50; xx++)
+            {
+
+                if (y + xx == hero.coords_y || y - xx == hero.coords_y)
+                {
+
+                    hero.Draw_Window_Death(window);
+                    
+                    break;
+                }
+            }
+        }
+        else if (x - i == hero.coords_x)
+        {
+            for (int xx = 0; xx < 50; xx++)
+            {
+
+                if (y + xx == hero.coords_y || y - xx == hero.coords_y)
+                {
+
+                    hero.Draw_Window_Death(window);
+
+                    break;
+                }
+            }
+        }
+        else//collision for y
+            if (y - i == hero.coords_y) {
+                for (int j = 0; j < 50; j++)
+                {
+
+                    if (hero.coords_x == x - j || hero.coords_x == x + j)//âðàã è áîìáà
+                    {
+                        hero.Draw_Window_Death(window);
+
+                        break;
+                    }
+                }
+            }
+            else if (y + i == hero.coords_y)
+            {
+                for (int j = 0; j < 50; j++)
+                {
+
+                    if (hero.coords_x == x - j || hero.coords_x == x + j)
+                    {
+                        std::cout << "3\n";
+                        hero.Draw_Window_Death(window);
+
+                        break;
+                    }
+                }
+
+            }
 
         
     
@@ -168,6 +227,8 @@ void Bomb::Kill(Enemy &enemy)
     enemy.x = -100;
     enemy.y = -100;
 }
+
+
 
 void Bomb::BOOM(Hero &hero, Bomb &bomb) {
 
