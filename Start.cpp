@@ -8,19 +8,21 @@ Game::Game()
     srand(time(NULL));
     Load();
     RenderWindow window(VideoMode(1680, 1050), "Bomberman!", Style::Fullscreen);//çàïóñê îêíà
-        Text text("", font, 20);//создаем объект текст. закидываем в объект текст строку, шрифт, размер шрифта(в пикселях);//сам объект текст (не строка)
-        text.setStyle(Text::Bold);//жирный и подчеркнутый текст. по умолчанию он "худой":)) и не подчеркнутый
-        text.setFillColor(Color::Black);
+    Text text("", font, 20);//создаем объект текст. закидываем в объект текст строку, шрифт, размер шрифта(в пикселях);//сам объект текст (не строка)
+    Text win("", font, 100);
+    win.setFillColor(Color::White);
+    text.setStyle(Text::Bold);//жирный и подчеркнутый текст. по умолчанию он "худой":)) и не подчеркнутый
+    text.setFillColor(Color::Black);
 
+    music.play();
     while (window.isOpen())//ãëàâíûé öèêë ïðîãðàììû
 
     {
-        //music.play();
-        timer_game = clock_game.getElapsedTime().asSeconds();   
+        timer_game = clock_game.getElapsedTime().asSeconds();
 
         std::ostringstream playerTime;
         playerTime << timer_game;
-        text.setString("Time "+playerTime.str()+"\\350");
+        text.setString("Time " + playerTime.str() + "\\350");
         text.setPosition(0, 0);
         //text.setPosition(text.getCenter().x - 165, view.getCenter().y - 200);
 
@@ -34,19 +36,19 @@ Game::Game()
         }
 
         window.clear();//ïîâòîð
-        
+
 
 
         if (!boom_true)
         {
             clock_boom.restart();
             timer_boom -= timer_boom;
-            
+
         }
         if (!boom)
         {
             clock_bomb.restart();
-            
+
             timer_bomb -= timer_bomb;
         }
 
@@ -62,7 +64,7 @@ Game::Game()
         {
             hero.Left_Hero_stay();//Àíèìàöèÿ ðàçâîðîòà
 
-            if (!DestroyStone.Destroy_stone_coords[(hero.coords_x - hero.move) / 50][hero.coords_y / 50])//÷òîá íå âðåçàòüñÿ â ñòåíó
+            if (DestroyStone.Destroy_stone_coords[(hero.coords_x - hero.move) / 50][hero.coords_y / 50])//÷òîá íå âðåçàòüñÿ â ñòåíó
             {
                 if (!(hero.coords_x == bomb.x + 50 && hero.coords_y == bomb.y))
                 {
@@ -77,7 +79,7 @@ Game::Game()
         if ((event.type == Event::KeyPressed) && (event.key.code == Keyboard::Right))
         {
             hero.Right_Hero_stay();
-            if (!DestroyStone.Destroy_stone_coords[(hero.coords_x + 50) / 50][hero.coords_y / 50])
+            if (DestroyStone.Destroy_stone_coords[(hero.coords_x + 50) / 50][hero.coords_y / 50])
             {
                 if (!(hero.coords_x == bomb.x - 50 && hero.coords_y == bomb.y))
                 {
@@ -91,7 +93,7 @@ Game::Game()
         if ((event.type == Event::KeyPressed) && (event.key.code == Keyboard::Up))
         {
             hero.Up_Hero_stay();
-            if (!DestroyStone.Destroy_stone_coords[hero.coords_x / 50][(hero.coords_y - hero.move) / 50])
+            if (DestroyStone.Destroy_stone_coords[hero.coords_x / 50][(hero.coords_y - hero.move) / 50])
             {
                 if (!(hero.coords_x == bomb.x && hero.coords_y == bomb.y + 50))
                 {
@@ -105,7 +107,7 @@ Game::Game()
         if ((event.type == Event::KeyPressed) && (event.key.code == Keyboard::Down))
         {
             hero.Face_Hero_stay();
-            if (!DestroyStone.Destroy_stone_coords[hero.coords_x / 50][(hero.coords_y + 50) / 50])
+            if (DestroyStone.Destroy_stone_coords[hero.coords_x / 50][(hero.coords_y + 50) / 50])
             {
                 if (!(hero.coords_x == bomb.x && hero.coords_y == bomb.y - 50))
                 {
@@ -116,21 +118,13 @@ Game::Game()
             }
         }
 
-        if (Keyboard::isKeyPressed(Keyboard::Escape) || timer_game == MAX_TIME )
+        if (Keyboard::isKeyPressed(Keyboard::Escape) || timer_game == MAX_TIME)
         {
 
             window.close();
         }
 
-        if (Keyboard::isKeyPressed(Keyboard::C))
-        {
-            system("cls");
-            std::cout << "\nenemyx " << " " << enemy1.x << " " << enemy2.x << " " << enemy3.x << " " << enemy4.x << " " << enemy5.x;
-            std::cout << "\nboom coords: " << Boom.boom_x << ' ' << Boom.boom_y;
-            std::cout << "\nboom coords: " << Boom.x << ' ' << Boom.y;
 
-
-        }//âðåìåííî
 
         if ((event.type == Event::KeyReleased) && (event.key.code == Keyboard::W) && !bomb.bomb_count)
         {
@@ -164,26 +158,26 @@ Game::Game()
         bomb.CollisionEnemy(enemy3);
         bomb.CollisionEnemy(enemy4);
         bomb.CollisionEnemy(enemy5);
-       // std::cout << timer_boom << std::endl;
+        // std::cout << timer_boom << std::endl;
 
 
         bomb.DrawWindowBomb(window);
-        if ( boom_true)
+        if (boom_true)
         {
             timer_boom = clock_boom.getElapsedTime().asSeconds();
 
-            if (timer_boom == 3 )
+            if (timer_boom == 3)
             {
-            std::cout << "\nasdasdasdasd\n";
 
-            boom_true = false;
-            timer_boom -= timer_boom;
-            clock_boom.restart();
+
+                boom_true = false;
+                timer_boom -= timer_boom;
+                clock_boom.restart();
             }
             else
             {
                 Boom.DrawWindowBoom(window);
-             
+
             }
         }
 
@@ -192,12 +186,22 @@ Game::Game()
 
         if (hero.coords_x == Door.door_x * 50 && hero.coords_y == Door.door_y * 50)
         {
-            std::cout << "çàøåë\n";
+            
             if (!enemy1.life && !enemy2.life && !enemy3.life && !enemy4.life && !enemy5.life)
             {
-                std::cout << "\nWIN";
+
+                window.clear(Color(0, 0, 0));
+                win.setString("YOU WIN ");
+                win.setPosition(600, 500);
+                window.draw(win);
+                window.display();
+                sleep(seconds(3));
                 window.close();
             }
+        }
+        if (timer_game == 180) {
+            music.openFromFile("music/music1.mp3");
+
         }
 
         if (boom)
@@ -214,7 +218,7 @@ Game::Game()
 
                 Boom.BOOM(hero, bomb);//взрыв
                 bomb.BombDelete();
-                   
+
 
                 clock_bomb.restart();
                 timer_bomb -= timer_bomb;

@@ -40,13 +40,13 @@ void Bomb::DestroyBomb(int Destroy_stone_coords[32][21], Enemy& enemy, Hero& her
 
 
     if (x % 100 == 0 || x % 100 == 50) {
-        Destroy_stone_coords[x / 50 + Power][y / 50] = 0;
-        Destroy_stone_coords[x / 50 - Power][y / 50] = 0;
+        Destroy_stone_coords[x / 50 + Power][y / 50] = 1;
+        Destroy_stone_coords[x / 50 - Power][y / 50] = 1;
 
     }
     if (y % 100 == 0 || y % 100 == 50) {
-        Destroy_stone_coords[x / 50][y / 50 + Power] = 0;
-        Destroy_stone_coords[x / 50][y / 50 - Power] = 0;
+        Destroy_stone_coords[x / 50][y / 50 + Power] = 1;
+        Destroy_stone_coords[x / 50][y / 50 - Power] = 1;
 
     }
     for (int i = 0; i < 51; i++)//êîëëèçèÿ ñ ìîíñòðîì

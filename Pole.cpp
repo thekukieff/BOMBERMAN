@@ -16,7 +16,7 @@ void Pole::DrawIndestructibleStone()
 
 void Pole::DrawDestroyStone()
 {
-    int True;
+    int True=0;
     Destroy_stone_image.loadFromFile("sprites/Destroy.png");
     Destroy_stone_texture.loadFromImage(Destroy_stone_image);
     Destroy_stone_sprite.setTexture(Destroy_stone_texture);
@@ -25,7 +25,10 @@ void Pole::DrawDestroyStone()
         for (int j = 1; j < ROW; j++)
         {
 
-            True = rand() % 2;
+
+               True = rand() % 3;
+
+            
             Destroy_stone_coords[i][j] = True;
 
         }
@@ -34,7 +37,7 @@ void Pole::DrawDestroyStone()
 
     for (int i = 0; i < ROW; i++)
     {
-        Destroy_stone_coords[0][i] = 0;
+        Destroy_stone_coords[0][i] = 1;
     }//íå çàïîëíåì ïåðâûé ðÿä
 }
 
@@ -53,11 +56,11 @@ void Pole::WindowDrawDestroy(RenderWindow& window)
 
 
 
-            if (Destroy_stone_coords[i][j] && j % 2 == 0) {
+            if (!Destroy_stone_coords[i][j] && j % 2 == 0) {
                 Destroy_stone_sprite.setPosition(i * 50, j * 50);
                 window.draw(Destroy_stone_sprite);
             }
-            else if (Destroy_stone_coords[i][j] && i % 2 == 0) {
+            else if (!Destroy_stone_coords[i][j] && i % 2 == 0) {
                 Destroy_stone_sprite.setPosition(i * 50, j * 50);
                 window.draw(Destroy_stone_sprite);
             }
@@ -115,12 +118,12 @@ void Pole::Door(Pole stone)
         door_x = rand() % 32 + 1;//+1 ÷òîáû íå áûëî íà ïåðâîé âåðòèêàëå
         door_y = rand() % 21 + 1;
 
-        if (stone.Destroy_stone_coords[door_x][door_y] == 1)
+        if (stone.Destroy_stone_coords[door_x][door_y] == 0)
         {
             if (door_x % 2 == 0 || door_y % 2 == 0)//íà âñÿêèé ñëó÷àé
             {
 
-                std::cout << stone.Destroy_stone_coords[door_x][door_y] << std::endl;
+                
                 break;
             }
         }

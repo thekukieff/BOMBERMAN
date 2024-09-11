@@ -74,7 +74,7 @@ void Enemy::DrawWindowEnemy(RenderWindow& window, Pole& Stone, Hero& hero)
         y += move_y;
         //std::cout << "x " << x << std::endl;
         //std::cout << "y " << y << std::endl;
-        if (Stone.Destroy_stone_coords[(x + 50) / 50][y / 50] || x >= 1550)//÷òîá íå âðåçàòüñÿ â ñòåíó
+        if (!Stone.Destroy_stone_coords[(x + 50) / 50][y / 50] || x >= 1550)//÷òîá íå âðåçàòüñÿ â ñòåíó
         {
             if (move_x)
             {
@@ -85,7 +85,7 @@ void Enemy::DrawWindowEnemy(RenderWindow& window, Pole& Stone, Hero& hero)
 
 
 
-        else if (Stone.Destroy_stone_coords[(x - move) / 50][y / 50] == 1 || x <= 0)//÷òîá íå âðåçàòüñÿ â ñòåíó
+        else if (Stone.Destroy_stone_coords[(x - move) / 50][y / 50] == 0 || x <= 0)//÷òîá íå âðåçàòüñÿ â ñòåíó
         {
             if (move_x)
             {
@@ -153,12 +153,12 @@ void Enemy::DrawWindowEnemy(RenderWindow& window, Pole& Stone, Hero& hero)
                 move_x = false;
                 first_x = false;
             }
-            if (Stone.Destroy_stone_coords[x / 50][(y + 50) / 50] && move_y == 1)//÷òîá íå âðåçàòüñÿ â ñòåíó
+            if (!Stone.Destroy_stone_coords[x / 50][(y + 50) / 50] && move_y == 1)//÷òîá íå âðåçàòüñÿ â ñòåíó
             {
                 DrawEnemyUp();
                 move_y = -1;
             }
-            else if (Stone.Destroy_stone_coords[x / 50][y / 50] && move_y == -1)//÷òîá íå âðåçàòüñÿ â ñòåíó
+            else if (!Stone.Destroy_stone_coords[x / 50][y / 50] && move_y == -1)//÷òîá íå âðåçàòüñÿ â ñòåíó
             {
                 DrawEnemyDown();
                 move_y = 1;
@@ -201,12 +201,12 @@ void Enemy::DrawWindowEnemy(RenderWindow& window, Pole& Stone, Hero& hero)
                 move_x = true;
                 first_y = false;//÷òîá âåðíèëñÿ îáðàòíî
             }
-            if (Stone.Destroy_stone_coords[(x + 50) / 50][y / 50] && move == 1)//÷òîá íå âðåçàòüñÿ â ñòåíó
+            if (!Stone.Destroy_stone_coords[(x + 50) / 50][y / 50] && move == 1)//÷òîá íå âðåçàòüñÿ â ñòåíó
             {
                 DrawEnemyLeft();
                 move = -1;
             }
-            else if (Stone.Destroy_stone_coords[x / 50][y / 50] && move_y == 1)//÷òîá íå âðåçàòüñÿ â ñòåíó
+            else if (!Stone.Destroy_stone_coords[x / 50][y / 50] && move_y == 1)//÷òîá íå âðåçàòüñÿ â ñòåíó
             {
                 DrawEnemyRight();
                 move = 1;
